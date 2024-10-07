@@ -1,0 +1,63 @@
+/* Menu điều hướng chính */
+.main-menu {
+    margin-top: 100px;
+    margin-bottom: 100px;
+    padding: 10px;
+    width: 250px;
+    height: calc(100vh - 400px);
+    background-color: #f0f0f5;
+}
+
+.main-menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column; /* Menu hiển thị theo cột */
+    gap: 15px;
+    flex-grow: 1; /* Để các mục trong menu chiếm không gian còn lại và giãn đều */
+}
+
+.main-menu ul li {
+    display: block;
+}
+
+.main-menu ul li a {
+    color: #333; /* Màu chữ dễ đọc hơn */
+    font-size: 1.2em;
+    text-decoration: none;
+    padding: 10px 20px;
+    background-color: #ffffff; /* Nền trắng cho các liên kết */
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    text-align: left; /* Canh trái cho văn bản */
+}
+
+.main-menu ul li a i {
+    margin-right: 10px;
+    color: #007bff; /* Màu xanh nhẹ cho icon */
+}
+
+.main-menu ul li a:hover {
+    background-color: #007bff; /* Đổi nền thành xanh khi hover */
+    color: white; /* Chữ đổi màu trắng khi hover */
+}
+
+/* Đảm bảo menu hiển thị đẹp trên thiết bị di động */
+@media (max-width: 768px) {
+    .main-menu {
+        width: 100%;
+        height: auto;
+        position: relative; /* Không cố định khi trên thiết bị di động */
+        top: 0; /* Đảm bảo menu hiển thị đầy đủ */
+    }
+
+    .main-menu ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .main-menu ul li a {
+        font-size: 1em;
+    }
+}

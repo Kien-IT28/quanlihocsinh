@@ -1,0 +1,95 @@
+/* Bố cục chính */
+.layout {
+    display: flex;
+}
+
+/* Menu điều hướng chính */
+.main-menu {
+    border-radius: 10px;
+    margin-top: 100px;
+    margin-bottom: 50px;
+    padding: 20px;
+    width: 250px; /* Chiều rộng của menu */
+    height: 300px;
+    background-color: #f0f0f5; /* Màu nền nhẹ nhàng cho menu */
+}
+
+.main-menu h2 {
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.main-menu ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.main-menu ul li {
+    margin-bottom: 10px;
+}
+
+.main-menu ul li a {
+    color: #333;
+    font-size: 1.1em;
+    text-decoration: none;
+    padding: 10px 20px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    display: block;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.main-menu ul li a:hover {
+    background-color: #a059e1;
+    color: white;
+}
+
+/* Nội dung bên phải với ảnh nền */
+.content-with-background {
+    margin-left: 250px; /* Tạo khoảng cách với menu bên trái */
+    padding: 50px;
+    background-image: url('static/images/DAT_1017.jpg'); /* Thay bằng đường dẫn tới ảnh nền của bạn */
+    background-size: cover;
+    background-position: center;
+    /*min-height: 100vh; !* Chiều cao tối thiểu của nội dung để phù hợp với màn hình *!*/
+    color: #fff; /* Màu chữ trắng để dễ đọc trên nền ảnh */
+}
+
+.content-with-background h2 {
+    margin-top: 0;
+}
+
+/* Đảm bảo menu hiển thị đẹp trên thiết bị di động */
+@media (max-width: 768px) {
+    .layout {
+        flex-direction: column;
+    }
+
+    .main-menu {
+        width: 100%;
+        position: relative;
+        bottom: auto;
+    }
+
+    .content-with-background {
+        margin-left: 0;
+        padding: 20px;
+    }
+}
+.submenu {
+    display: none; /* Ẩn danh sách con */
+}
+
+.menu-toggle i {
+    float: right;
+}
+
+.menu-toggle.active + .submenu {
+    display: block; /* Hiển thị danh sách con khi mục chính được kích hoạt */
+}
+
+.content-with-background {
+    /* Đảm bảo footer không nằm trên ảnh nền */
+    padding-bottom: 100px;
+}
