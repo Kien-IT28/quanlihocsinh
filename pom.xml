@@ -27,7 +27,7 @@
 		<url/>
 	</scm>
 
-	<!--Cấu hình chung phiên bản của các thư viện-->
+<!--Cấu hình chung phiên bản của các thư viện-->
 	<properties>
 		<java.version>21</java.version>
 		<projectlombok-lombok.version>1.18.30</projectlombok-lombok.version>
