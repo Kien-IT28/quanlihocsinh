@@ -17,12 +17,12 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int mahocsinh;
+    int accCode;
 
     String username;
     String email;
     String password;
 
-    @ElementCollection
-    Set<String> roles;
+    @ManyToMany
+    Set<Role> roles;
 }

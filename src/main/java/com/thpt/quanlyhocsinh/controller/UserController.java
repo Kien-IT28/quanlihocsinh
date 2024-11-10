@@ -2,6 +2,7 @@ package com.thpt.quanlyhocsinh.controller;
 
 import com.thpt.quanlyhocsinh.dto.request.ApiResponse;
 import com.thpt.quanlyhocsinh.dto.request.UserCreationRequest;
+import com.thpt.quanlyhocsinh.dto.request.UserUpdateRequest;
 import com.thpt.quanlyhocsinh.dto.response.UserResponse;
 import com.thpt.quanlyhocsinh.service.UserService;
 import jakarta.validation.Valid;
@@ -18,7 +19,7 @@ import java.util.List;
 @RequestMapping("/users")
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-@Slf4j // add log
+@Slf4j
 public class UserController {
     UserService userService;
 
@@ -67,6 +68,22 @@ public class UserController {
                 .result(myInfo)
                 .message("Lấy thông tin thành công!")
                 .success(true)
+                .build();
+    }
+    // Update User
+    @PutMapping("/{accCode}")
+    public ApiResponse<UserResponse> updateUser(@PathVariable int accCode, @RequestBody UserUpdateRequest request) {
+        return ApiResponse.<UserResponse>builder()
+                .result(userService.updateUser(accCode, request))
+                .build();
+    }
+
+    // Delete User
+    @DeleteMapping("/{accCode}")
+    ApiResponse<String> deleteUser(@PathVariable int accCode) {
+        userService.deleteUser(accCode);
+        return ApiResponse.<String>builder()
+                .result("Người dùng đã bị xóa")
                 .build();
     }
 }

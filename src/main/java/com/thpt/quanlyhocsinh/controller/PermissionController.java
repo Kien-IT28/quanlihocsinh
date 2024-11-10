@@ -2,8 +2,12 @@ package com.thpt.quanlyhocsinh.controller;
 
 import com.thpt.quanlyhocsinh.dto.request.ApiResponse;
 import com.thpt.quanlyhocsinh.dto.request.PermissionRequest;
+import com.thpt.quanlyhocsinh.dto.request.UserUpdateRequest;
 import com.thpt.quanlyhocsinh.dto.response.PermissionResponse;
+import com.thpt.quanlyhocsinh.dto.response.UserResponse;
 import com.thpt.quanlyhocsinh.service.PermissionService;
+import com.thpt.quanlyhocsinh.service.UserService;
+import io.swagger.annotations.Api;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -19,6 +23,7 @@ import java.util.List;
 @Slf4j // add log
 public class PermissionController {
     PermissionService permissionService;
+    UserService userService;
 
     // Add Permission
     @PostMapping

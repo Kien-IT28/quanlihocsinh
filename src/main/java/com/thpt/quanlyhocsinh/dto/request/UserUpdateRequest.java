@@ -3,6 +3,8 @@ package com.thpt.quanlyhocsinh.dto.request;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.util.List;
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -10,7 +12,8 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class UserUpdateRequest {
     String id;
-    int mahocsinh;
+    int accCode;
     String username;
     String password;
+    List<String> roles;
 }

@@ -33,29 +33,25 @@ public class SecurityConfig {
     private String signerKey;
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http, CustomAuthenticationSuccessHandler successHandler) throws Exception {
         http
-                // Cho phép truy cập các URL không cần xác thực
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.POST, PUBLIC_ENDPOINTS).permitAll()
-                        // User cos Role ADMIN moi duoc truy cap
-//                        .requestMatchers(HttpMethod.GET, "/users").hasRole(Role.ADMIN.name())
+                        .requestMatchers("/admin/adminHome").hasAnyAuthority("ADMIN")
+                        .requestMatchers("/teacher/teacherHome").hasAnyAuthority("TEACHER")
                         .anyRequest().authenticated())
 
-                // Cấu hình form login
                 .formLogin(form -> form
                         .loginPage("/login")  // Trang login
-                        .defaultSuccessUrl("/home", true)
-                        .permitAll())  // Cho phép tất cả truy cập form login
+                        .successHandler(successHandler)  // Sử dụng handler tùy chỉnh
+                        .failureUrl("/login?error=true")
+                        .permitAll())
 
-                // Cấu hình OAuth2 với JWT cho các request cần xác thực qua JWT
                 .oauth2ResourceServer(auth2 -> auth2.jwt(jwtConfigurer ->
-                        jwtConfigurer.decoder(jwtDecoder())
-                                .jwtAuthenticationConverter(jwtAuthenticationConverter()))
-                        .authenticationEntryPoint(new JwtAuthenticationEntryPoint())
-                )
+                                jwtConfigurer.decoder(jwtDecoder())
+                                        .jwtAuthenticationConverter(jwtAuthenticationConverter()))
+                        .authenticationEntryPoint(new JwtAuthenticationEntryPoint()))
 
-                // Vô hiệu hóa CSRF cho các request API
                 .csrf(AbstractHttpConfigurer::disable);
 
         return http.build();
